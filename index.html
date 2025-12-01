@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 关键：移动端视口优化 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#3B82F6">
+    <title>卢冠杰 - 作品集</title>
+    
+    <!-- iOS Safari 优化 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Chart.js用于饼图展示 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F3F4F6',
+                        purple: '#8B5CF6',
+                        accent: '#F97316'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    screens: {
+                        'xs': '375px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ========== 只修改移动端布局样式，不修改内容 ========== */
+        
+       /* ========== 只修改移动端布局样式，不修改内容 ========== */
+
+/* 1. 移动端基础优化 */
+html { 
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 2. 移动端容器优化 */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* 调整导航栏高度 */
+    #navbar .container {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+    }
+    
+    /* 英雄区域优化 */
+    .pt-32 {
+        padding-top: 6rem !important;
+    }
+    
+    .text-\[clamp\(2\.5rem\,5vw\,4rem\)\] {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* 作品卡片间距优化 */
+    .gap-8 {
+        gap: 1rem !important;
+    }
+    
+    .project-card {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* 技能区域优化 */
+    .chart-container {
+        max-width: 280px !important;
+        height: 280px !important;
+        margin: 0 auto 2rem !important;
+    }
+    
+    /* ========== 新增的移动端样式修改 ========== */
+    
+    /* 1. 作品筛选按钮改为两行两列布局 */
+    .flex.justify-center.gap-4.mb-12 {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        max-width: 300px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* 筛选按钮样式 */
+    .filter-btn {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0.5rem !important;
+        font-size: 0.875rem !important;
+        text-align: center !important;
+    }
+    
+    /* 2. 作品网格改为两列布局（一行两个）- 使用更具体的选择器确保生效 */
+    #projects > .container > .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+    
+    /* 作品卡片设置50%宽度 */
+    .project-card {
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* 图片尺寸优化 - 固定高度，保持比例 */
+    .project-card img {
+        height: 180px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    .project-card .p-6 {
+        padding: 1rem !important;
+    }
+    
+    .project-card h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* 使用简单的高度限制显示两行文本 */
+    .project-card p {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.75rem !important;
+        line-height: 1.4 !important;
+        height: 2.8em !important; /* 2行 * 1.4行高 = 2.8em */
+        overflow: hidden !important;
+    }
+    
+    .project-card a {
+        font-size: 0.875rem !important;
+    }
+    
+    /* 作品标签 */
+    .project-card .absolute.top-4.left-4 {
+        top: 0.5rem !important;
+        left: 0.5rem !important;
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    /* 3. 专业设计工具卡片改为两行五列网格布局，取消动画效果 */
+    /* 工具容器调整 */
+    .tools-container {
+        margin: 0 !important;
+        padding: 2rem 0 !important;
+        justify-content: center !important;
+        overflow-x: visible !important;
+    }
+    
+    /* 工具网格改为网格布局，两行五列 */
+    .tools-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        justify-items: center !important;
+    }
+    
+    /* 工具卡片取消重叠效果，改为常规网格卡片 */
+    .tool-card {
+        width: 100% !important;
+        height: 110px !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        z-index: 1 !important;
+        position: relative !important;
+        background-color: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        transition: none !important; /* 取消动画效果 */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* 取消所有悬停效果 */
+    .tool-card:hover {
+        transform: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        z-index: 1 !important;
+    }
+    
+    .tool-card:hover .tool-image {
+        opacity: 0.8 !important;
+        transform: none !important;
+    }
+    
+    .tool-card:hover .tool-name {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* 调整图标大小 */
+    .tool-card .tool-image {
+        width: 45px !important;
+        height: 45px !important;
+        margin: 0.5rem auto 0.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 0.8 !important;
+        transition: none !important; /* 取消动画 */
+    }
+    
+    .tool-card .tool-image img {
+        max-width: 35px !important;
+        max-height: 35px !important;
+    }
+    
+    /* 调整工具名称样式 - 始终显示 */
+    .tool-card .tool-name {
+        font-size: 0.7rem !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        position: static !important;
+        padding: 0 0.25rem !important;
+        opacity: 1 !important; /* 始终显示名称 */
+        transform: none !important;
+        transition: none !important;
+        margin-top: 0.25rem !important;
+        line-height: 1.2 !important;
+        height: 2.4em !important; /* 限制为两行 */
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        height: 2.8em;
+        -webkit-box-orient: vertical !important;
+    }
+    
+    /* 取消移动端触摸效果 */
+    .tool-card.active,
+    .tool-card:focus {
+        transform: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .tool-card.active .tool-image,
+    .tool-card:focus .tool-image {
+        opacity: 0.8 !important;
+        transform: none !important;
+    }
+    
+    .tool-card.active .tool-name,
+    .tool-card:focus .tool-name {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* 4. 其他移动端优化 */
+    .text-lg {
+        font-size: 0.875rem !important;
+    }
+    
+    .text-xl {
+        font-size: 1rem !important;
+    }
+    
+    /* 技能饼图容器调整 */
+    .chart-container {
+        max-width: 250px !important;
+        height: 250px !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* 技能分类调整 */
+    .skill-category {
+        padding: 0.75rem !important;
+    }
+    
+    .skill-category h4 {
+        font-size: 1rem !important;
+    }
+    
+    .skill-item {
+        font-size: 0.75rem !important;
+        padding: 0.125rem 0.5rem !important;
+    }
+    
+    /* AI技能标签调整 */
+    .skill-tag {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+        margin-right: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    /* 弹窗优化 */
+    .modal {
+        padding: 0 !important;
+    }
+    
+    .close-modal {
+        width: 44px !important;
+        height: 44px !important;
+        top: env(safe-area-inset-top, 1rem) !important;
+        right: 1rem !important;
+    }
+    
+    .detail-gallery .thumbnails img {
+        height: 80px !important;
+    }
+}
+
+/* 3. 小屏幕手机额外优化 */
+@media (max-width: 375px) {
+    .text-\[clamp\(2\.5rem\,5vw\,4rem\)\] {
+        font-size: 1.75rem !important;
+    }
+    
+    .chart-container {
+        max-width: 240px !important;
+        height: 240px !important;
+    }
+    
+    /* 作品卡片在小屏幕调整 */
+    .project-card img {
+        height: 160px !important;
+    }
+    
+    .project-card h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    /* 小屏幕手机：文本显示两行 */
+    .project-card p {
+        font-size: 0.8rem !important;
+        height: 2.6em !important; /* 2行 * 1.3行高 = 2.6em */
+    }
+    
+    /* 作品筛选按钮在小屏幕进一步调整 */
+    .flex.justify-center.gap-4.mb-12 {
+        max-width: 280px !important;
+        gap: 0.4rem !important;
+    }
+    
+    .filter-btn {
+        font-size: 0.8rem !important;
+        padding: 0.4rem !important;
+    }
+    
+    /* 工具卡片在小屏幕进一步调整 */
+    .tool-card {
+        height: 100px !important;
+    }
+    
+    .tool-card .tool-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .tool-card .tool-image img {
+        max-width: 30px !important;
+        max-height: 30px !important;
+    }
+    
+    .tool-card .tool-name {
+        font-size: 0.65rem !important;
+        height: 2.6em !important;
+    }
+}
+
+/* 4. 平板优化 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 100% !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+    
+    /* 平板上的作品显示为三列 */
+    #projects > .container > .grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* 5. 保持原有动画效果（仅修改移动端触控） */
+@media (hover: none) {
+    .project-card:hover {
+        transform: none !important;
+    }
+    
+    /* 修复：在移动端仍保留工具卡片的触摸反馈 */
+    .tool-card:hover {
+        transform: none !important;
+    }
+}
+
+/* 6. 防止移动端横向滚动 */
+.prevent-horizontal-scroll {
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
+/* ========== 保持原有的所有样式不变 ========== */
+/* 基础动画效果 */
+.project-card { transition: transform 0.3s ease; }
+.project-card:hover { transform: translateY(-8px); }
+.skill-bar { transition: width 1s ease-in-out; }
+.tool-card { transition: all 0.3s ease; }
+.tool-card:hover { transform: scale(1.1) translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); z-index: 20; }
+
+/* 技能标签样式 */
+.skill-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 弹窗基础样式（用于查看详情和更多作品） */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 2rem 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal.active {
+    display: block;
+    opacity: 1;
+}
+.modal-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.close-modal {
+    position: sticky;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1010;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+.close-modal:hover {
+    transform: rotate(90deg);
+}
+
+/* 作品详情弹窗样式 */
+.project-detail {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+.detail-header {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+}
+.detail-body {
+    padding: 2rem;
+}
+.detail-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+    .detail-gallery {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+.detail-gallery .main-image {
+    border-radius: 8px;
+    overflow: hidden;
+}
+.detail-gallery .main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.detail-gallery .thumbnails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+.detail-gallery .thumbnails img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+.detail-gallery .thumbnails img:hover {
+    opacity: 0.8;
+}
+.detail-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .detail-info {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+.detail-description h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1F2937;
+}
+.detail-meta {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+.detail-meta h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #1F2937;
+}
+.meta-item {
+    margin-bottom: 1rem;
+}
+.meta-item:last-child {
+    margin-bottom: 0;
+}
+.meta-item strong {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+/* 更多作品弹窗内作品卡片样式 */
+.project-card-more {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.project-card-more:hover {
+    transform: translateY(-8px);
+}
+
+/* 设计工具容器样式 - 扑克牌效果（居中调整） */
+.tools-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 2rem 0;
+    scrollbar-width: thin;
+    /* 以下两行是让卡片整体水平居中的关键设置 */
+    display: flex;          /* 设置为flex容器 */
+    justify-content: center; /* 水平居中对齐内容 */
+}
+
+.tools-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tools-container::-webkit-scrollbar-thumb {
+    background-color: rgba(59, 130, 246, 0.5);
+    border-radius: 3px;
+}
+
+.tools-grid {
+    display: flex;
+    gap: 0; /* 卡片之间无缝排列 */
+    width: auto; /* 调整为auto以便居中 */
+    padding: 0; /* 移除内边距，避免影响居中 */
+}
+
+/* 工具卡片样式 - 扑克牌效果 */
+.tool-card {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-right: -50px; /* 卡片重叠效果 */
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+/* 移除第一个卡片的左边距，让整个组能真正居中 */
+.tool-card:first-child {
+    margin-left: 0;
+}
+
+/* 调整图标容器以适应正方形卡片 */
+.tool-card .tool-image {
+    width: 80px;
+    height: 80px;
+    margin: 1.2rem auto 0; /* 调整垂直位置 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6; /* 默认半透明 */
+    transition: all 0.3s ease;
+}
+.tool-card .tool-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+/* 调整工具名称位置以适应正方形卡片 */
+.tool-card .tool-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    bottom: 1rem; /* 调整距离底部的距离 */
+    left: 0;
+    right: 0;
+    padding: 0 0.5rem;
+    opacity: 0; /* 默认隐藏名称 */
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+/* 移除第一个卡片的左边距，让整个组能真正居中 */
+.tool-card:first-child {
+    margin-left: 0;}
+
+    /* 第一个卡片不重叠 */
+    .tool-card:first-child {
+        margin-left: 1rem;
+    }
+    
+    /* 卡片内容默认隐藏部分信息 */
+    .tool-card .tool-image {
+        width: 80px;
+        height: 80px;
+        margin: 1rem auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.6; /* 默认半透明 */
+        transition: all 0.3s ease;
+    }
+    
+    .tool-card .tool-name {
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-align: center;
+        position: absolute;
+        bottom: 1rem;
+        left: 0;
+        right: 0;
+        padding: 0 0.5rem;
+        opacity: 0; /* 默认隐藏名称 */
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+    
+    /* 鼠标悬停时显示完整内容（扑克牌效果） */
+    .tool-card:hover {
+        margin-right: 20px; /* 悬停时增加右侧间距 */
+        margin-left: 20px; /* 悬停时增加左侧间距 */
+        z-index: 10;
+    }
+    
+    .tool-card:hover .tool-image {
+        opacity: 1; /* 完全显示图标 */
+        transform: scale(1.2); /* 图标放大 */
+    }
+    
+    .tool-card:hover .tool-name {
+        opacity: 1; /* 显示名称 */
+        transform: translateY(0);
+    }
+    
+    /* 响应式调整 */
+    @media (min-width: 1024px) {
+        .tool-card {
+            width: 140px;
+            height: 200px;
+        }
+    }
+
+    /* 技能详情标签 */
+    .skill-detail {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 饼图容器样式 */
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    /* 技能类别样式 */
+    .skill-category {
+        padding: 1rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+    
+    .skill-category:hover {
+        transform: translateY(-5px);
+    }
+    
+    .skill-category h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .skill-category h4 span {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+    
+    .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .skill-item {
+        background-color: rgba(243, 244, 246, 0.9); /* 改为浅灰色背景避免与白色重合 */
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 增加轻微阴影提升辨识度 */
+    }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 prevent-horizontal-scroll">
+    <!-- 导航栏 - 移动端优化 -->
+    <header id="navbar" class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary flex items-center">
+                <i class="fa fa-cube mr-2"></i>
+                <span>我是卢冠杰</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="font-medium hover:text-primary transition-all">关于我</a>
+                <a href="#projects" class="font-medium hover:text-primary transition-all">作品</a>
+                <a href="#skills" class="font-medium hover:text-primary transition-all">技能</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="py-3 px-4 font-medium hover:text-primary transition-all rounded-lg hover:bg-gray-50">关于我</a>
+                <a href="#projects" class="py-3 px-4 font-medium hover:text-primary transition-all rounded-lg hover:bg-gray-50">作品</a>
+                <a href="#skills" class="py-3 px-4 font-medium hover:text-primary transition-all rounded-lg hover:bg-gray-50">技能</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-dark mb-6">
+                        创意设计师<br>
+                        <span class="text-primary">作品集展示</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">专注于UI/UX设计与动效设计，创造既美观又实用的数字产品，为用户带来卓越体验。</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#about" class="bg-white hover:bg-gray-100 text-primary border border-primary font-medium px-6 py-3 rounded-lg shadow hover:shadow-md transition-all">关于我</a>
+                        <a href="#projects" class="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all">
+                            查看作品
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-30"></div>
+                        <!-- 个人照片 -->
+                        <img src="个人照片/pho1.jpg" alt="个人照片" class="w-64 h-64 md:w-70 md:h-80 rounded-full object-cover relative z-10 border-4 border-white shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">关于我</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-2/5">
+                    <div class="relative">
+                        <!-- 工作照 -->
+                        <img src="个人照片/pho3.jpg" alt="工作照" class="rounded-lg shadow-xl w-full h-auto">
+                        <div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-lg shadow-lg">
+                            <p class="text-3xl font-bold">1+</p>
+                            <p class="text-sm">年设计经验</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/5">
+                    <h3 class="text-2xl font-bold mb-4">你好，我是卢冠杰</h3>
+                    <p class="text-gray-600 mb-6">我是一名充满热情的UI/UX设计师和动效设计师。我热衷于创造既美观又实用的数字产品，注重细节和用户体验。</p>
+                    <p class="text-gray-600 mb-8">我的设计理念是"简洁至上"，我相信最好的设计应该是无形的，能够让用户专注于内容和功能本身。</p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <p class="font-medium text-gray-700"><i class="fa fa-envelope text-primary mr-2"></i> 邮箱</p>
+                            <p class="text-gray-600">2425853244@qq.com</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700"><i class="fa fa-phone text-primary mr-2"></i> 电话</p>
+                            <p class="text-gray-600">19120917736</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700"><i class="fa fa-map-marker text-primary mr-2"></i> 地址</p>
+                            <p class="text-gray-600">广东省广州市</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700"><i class="fa fa-globe text-primary mr-2"></i> 求职意向</p>
+                            <p class="text-gray-600">UI/UX设计师，动效设计师</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示区 -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">我的作品</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-4">这里展示了我近年来的一些代表性作品，涵盖了非遗网站UI与动效设计，情感交互装置设计，车机界面设计，影视后期，游戏策划与开发，手机主题动画设计，海报设计，商品页面排版等多个领域</p>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- 作品筛选按钮 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active bg-primary text-white px-5 py-2 rounded-full text-sm font-medium" data-filter="all">全部作品</button>
+                <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-all" data-filter="website">平面设计</button>
+                <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-all" data-filter="app">交互设计</button>
+                <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-all" data-filter="brand">游戏与场景</button>
+            </div>
+            
+            <!-- 作品网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 作品1 - 海报 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="website">
+                    <div class="relative overflow-hidden">
+                        <img src="海报设计/龙的传人海报.jpg" alt="海报设计与排版" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">海报设计</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">海报设计与排版</h3>
+                        <p class="text-gray-600 mb-4">通过视觉化呈现快速传递活动、产品、理念的信息，并吸引目标受众关注，促使用户参与、购买、认知。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="1">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品2 - 烧火龙 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="app">
+                    <div class="relative overflow-hidden">
+                        <img src="交互设计/1.png" alt="网页设计" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">交互设计</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">网页设计</h3>
+                        <p class="text-gray-600 mb-4">通过数字化平台记录其文化内涵与技艺流程、向大众普及这项非遗的价值、助力活态传承，并推动文旅融合，最终搭建传统与现代的桥梁，让烧火龙在当代持续焕发生命力。
+</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="2">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品3 - 游戏设计开发 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="brand">
+                    <div class="relative overflow-hidden">
+                        <img src="游戏与场景/锈蚀游戏封面海报.jpg" alt="游戏设计与开发" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-purple text-white text-xs font-bold px-3 py-1 rounded-full">游戏设计</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">游戏设计与开发</h3>
+                        <p class="text-gray-600 mb-4">营造沉浸式惊悚氛围、设计紧张刺激的情节与互动，让玩家体验可控的恐惧与肾上腺素飙升的快感，同时传递特定叙事或情感共鸣。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="3">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品4 - 网站设计类 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="website">
+                    <div class="relative overflow-hidden">
+                        <img src="2.5D插画设计/AI冬至.jpg" alt="Adobe illustrator产出" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">2.5D插画</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">2.5D插画设计</h3>
+                        <p class="text-gray-600 mb-4">广泛应用在网页设计、移动应用界面、游戏界面等领域，借助 2.5D 设计可呈现更生动直观的效果，能有效引导用户视线流动，增强用户体验</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="4">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品5 - 人机交互UI -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="app">
+                    <div class="relative overflow-hidden">
+                        <img src="交互设计/适老APP.png" alt="人机交互设计" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">交互设计</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">人机交互设计</h3>
+                        <p class="text-gray-600 mb-4">通过优化人与系统的交互方式，实现高效、安全、舒适且符合用户预期的互动体验。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="5">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品6 - 场景设计 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-category="brand">
+                    <div class="relative overflow-hidden">
+                        <img src="游戏与场景/1.png" alt="科技公司品牌重塑" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        
+                        <div class="absolute top-4 left-4 bg-purple text-white text-xs font-bold px-3 py-1 rounded-full">场景设计</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">动画场景设计</h3>
+                        <p class="text-gray-600 mb-4">构建符合动画故事基调与世界观的视觉空间，既为角色活动提供合理环境支撑，也通过氛围营造传递情感、推动剧情，增强观众的代入感。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline view-project-details" data-id="6">
+                            查看详情 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 查看更多作品按钮 -->
+            <div class="text-center mt-12">
+                <button id="view-more-projects" class="inline-block bg-white hover:bg-gray-50 text-primary border border-primary font-medium px-6 py-3 rounded-lg shadow hover:shadow-md transition-all">
+                    
+                </button>
+            </div>
+        </div>
+    </section>
+
+   <!-- 技能展示 -->
+     <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">我的专业技能</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-4">
+                    专注于UI/UX设计，熟练运用各类专业工具和AI平台辅助创作，能够高效完成从概念到实现的全流程设计工作
+                </p>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- 设计工具 - 扑克牌效果展示（增加至10个并增大尺寸） -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fa fa-wrench text-primary mr-3"></i> 专业设计工具
+                </h3>
+                
+                <!-- 设计工具容器 - 扑克牌效果 -->
+                <div class="tools-container">
+    <div class="tools-grid">
+        <!-- 工具1 - 修改图片的位置：替换i标签或img标签 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片，可替换为img标签 -->
+                <!-- 示例：<img src="你的图片路径" alt="Photoshop" class="w-full h-full object-contain"> -->
+                <img src="专业软件/photoshop.png" alt="Photoshop">
+            </div>
+            <h4 class="tool-name">Photoshop</h4>
+        </div>
+        
+        <!-- 工具2 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/AI.png" alt="Illustrator">
+            </div>
+            <h4 class="tool-name">Illustrator</h4>
+        </div>
+        
+        <!-- 工具3 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/Figma.png" alt="Figma">
+            </div>
+            <h4 class="tool-name">Figma</h4>
+        </div>
+        
+        <!-- 工具4 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/sketch.png" alt="Sketch">
+            </div>
+            <h4 class="tool-name">Sketch</h4>
+        </div>
+        
+        <!-- 工具5 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/AE.png" alt="AfterEffects">
+            </div>
+            <h4 class="tool-name">AE</h4>
+        </div>
+        
+        <!-- 工具6 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/剪映.png" alt="剪映">
+            </div>
+            <h4 class="tool-name">剪映</h4>
+        </div>
+        
+        <!-- 工具7 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/UE5.png" alt="UnrealEngine">
+            </div>
+            <h4 class="tool-name">UE5</h4>
+        </div>
+        
+        <!-- 工具8 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/vscode.png" alt="VS CODE">
+            </div>
+            <h4 class="tool-name">VS CODE</h4>
+        </div>
+        
+        <!-- 工具9 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/excel.png" alt="Excel">
+            </div>
+            <h4 class="tool-name">Excel</h4>
+        </div>
+        
+        <!-- 工具10 -->
+        <div class="tool-card">
+            <div class="tool-image">
+                <!-- 这里是工具图标/图片 -->
+                <img src="专业软件/ppt.png" alt="PowerPoint">
+            </div>
+            <h4 class="tool-name">PPT</h4>
+        </div>
+    </div>
+</div>
+            
+            <!-- 核心UI/UX设计技能 - 饼图形式展示 -->
+            <div class="mb-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center text-accent">
+                    <i class="fa fa-paint-brush mr-3"></i> 核心技能：UI/UX设计专业能力
+                </h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- 饼图展示 -->
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                    
+                    <!-- 技能详情 -->
+                    <div class="space-y-6">
+                        <div class="skill-category bg-white/70">
+                            <h4>
+                                <span style="background-color: #3B82F6;"></span>
+                                用户界面设计
+                            </h4>
+                            <p class="text-gray-600">创建美观且功能强大的用户界面，注重视觉层次、色彩搭配和排版，确保良好的用户体验。</p>
+                            <div class="skill-items">
+                                <span class="skill-item">视觉设计</span>
+                                <span class="skill-item">响应式设计</span>
+                                <span class="skill-item">交互原型设计</span>
+                                <span class="skill-item">设计系统</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category bg-white/70">
+                            <h4>
+                                <span style="background-color: #10B981;"></span>
+                                用户体验设计
+                            </h4>
+                            <p class="text-gray-600">关注用户需求和行为，通过用户研究和测试，优化产品流程，提升整体用户体验。</p>
+                            <div class="skill-items">
+                                <span class="skill-item">用户研究</span>
+                                <span class="skill-item">可用性测试</span>
+                                <span class="skill-item">信息架构</span>
+                                <span class="skill-item">用户旅程地图</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category bg-white/70">
+                            <h4>
+                                <span style="background-color: #8B5CF6;"></span>
+                                动效与视觉设计
+                            </h4>
+                            <p class="text-gray-600">通过动效设计增强用户体验，创建流畅的过渡和微交互，提升产品品质感。</p>
+                            <div class="skill-items">
+                                <span class="skill-item">动效设计</span>
+                                <span class="skill-item">平面设计</span>
+                                <span class="skill-item">游戏界面设计</span>
+                                <span class="skill-item">品牌视觉</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI辅助设计能力 -->
+            <div>
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fa fa-lightbulb-o text-primary mr-3"></i> AI辅助创作能力
+                </h3>
+                
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <p class="text-gray-700 mb-6">熟练运用各类AI平台辅助设计创作，能够高效生成创意方案、优化设计流程并提升作品质量：</p>
+                    
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag bg-blue-100 text-blue-800">Midjourney 图像生成</span>
+                        <span class="skill-tag bg-purple-100 text-purple-800">DALL-E 创意设计</span>
+                        <span class="skill-tag bg-green-100 text-green-800">ChatGPT 文案辅助</span>
+                        <span class="skill-tag bg-yellow-100 text-yellow-800">AI 设计趋势分析</span>
+                        <span class="skill-tag bg-red-100 text-red-800">AI 辅助用户研究</span>
+                        <span class="skill-tag bg-indigo-100 text-indigo-800">Figma AI 插件应用</span>
+                        <span class="skill-tag bg-pink-100 text-pink-800">AI 自动排版优化</span>
+                        <span class="skill-tag bg-teal-100 text-teal-800">AI 色彩方案生成</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8 border-t border-gray-800 pb-safe">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white flex items-center justify-center md:justify-start">
+                        <i class="fa fa-cube mr-2 text-primary"></i>
+                        <span>我是卢冠杰</span>
+                    </a>
+                    <p class="text-gray-400 mt-2 text-center md:text-left">
+                        创造有价值的设计与体验
+                    </p>
+                </div>
+                
+                <div class="text-gray-400 text-sm">
+                    © 2025 卢冠杰. 保留所有权利.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- 作品详情弹窗 -->
+    <div id="project-detail-modal" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" id="close-detail-modal">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="project-detail" id="project-detail-content">
+                <!-- 作品详情内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 更多作品弹窗 -->
+    <div id="more-projects-modal" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" id="close-more-modal">
+                <i class="fa fa-times"></i>
+            </div>
+            <h2 class="text-white text-2xl md:text-3xl font-bold mb-6">更多作品</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="more-projects-content">
+                <!-- 更多作品内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端检测
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        // 针对移动端的优化
+        if (isMobile) {
+            // 防止双击缩放
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            
+            // 优化工具卡片在移动端的交互
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    // 移除其他卡片的active状态
+                    toolCards.forEach(c => {
+                        if (c !== this) c.classList.remove('active');
+                    });
+                    
+                    // 添加当前卡片的active状态
+                    this.classList.add('active');
+                });
+                
+                card.addEventListener('touchend', function() {
+                    // 移除active状态
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 500);
+                });
+            });
+            
+            // 优化移动端菜单点击区域
+            const menuLinks = document.querySelectorAll('#mobile-menu a');
+            menuLinks.forEach(link => {
+                link.style.padding = '12px 16px';
+                link.style.margin = '-4px -8px';
+            });
+        }
+        
+        // 作品数据
+        const projectsData = [
+            {
+                id: 1,
+                title: "海报设计与排版",
+                category: "brand",
+                description: "通过视觉化呈现快速传递活动、产品、理念的信息，并吸引目标受众关注，促使用户参与、购买、认知。",
+                client: "知名品牌",
+                timeline: "2024年3月 - 2024年6月",
+                services: "海报设计与排版",
+                mainMedia: "海报设计/龙的传人海报.jpg",
+                media: [
+                    "海报设计/龙的传人海报.jpg",
+                    "海报设计/周六福海报设计.jpg",
+                    "海报设计/赣州海报.jpg",
+                    "海报设计/家居爆炸图.jpg"
+                ]
+            },
+            {
+                id: 2,
+                title: "网页设计",
+                category: "website",
+                description: "通过数字化平台记录其文化内涵与技艺流程、向大众普及这项非遗的价值、助力活态传承，并推动文旅融合，最终搭建传统与现代的桥梁，让烧火龙在当代持续焕发生命力。",
+                client: "健康科技公司",
+                timeline: "2022年11月 - 2023年2月",
+                services: "UI设计, UX设计, 原型设计",
+                mainMedia: "交互设计/1.png",
+                media: [
+                    "交互设计/2.png",
+                    "交互设计/3.png",
+                    "交互设计/4.png",
+                    "交互设计/5.png"
+                ],
+                
+            },
+            {
+                id: 3,
+                title: "游戏设计与开发",
+                category: "app",
+                description: "全程UE5开发，营造沉浸式惊悚氛围、设计紧张刺激的情节与互动，让玩家体验可控的恐惧与肾上腺素飙升的快感，同时传递特定叙事或情感共鸣。",
+                client: "",
+                timeline: "",
+                services: "",
+                mainMedia: "游戏与场景/锈蚀游戏封面海报.jpg",
+                media: [
+                    "游戏与场景/开始.png",
+                    "游戏与场景/手电筒系统.png",
+                    "游戏与场景/发现僵尸.png",
+                    "游戏与场景/夜视仪.png"
+                ]
+            },
+            {
+                id: 4,
+                title: "2.5D插画设计",
+                category: "app",
+                description: "广泛应用在网页设计、移动应用界面、游戏界面等领域，借助 2.5D 设计可呈现更生动直观的效果，能有效引导用户视线流动，增强用户体验",
+                client: "",
+                timeline: "",
+                services: "UI设计, UX设计",
+                mainMedia: "2.5D插画设计/AI冬至.jpg",
+                media: [
+                    "2.5D插画设计/AI冬至.jpg",
+                    "2.5D插画设计/可乐屋_画板 1.jpg",
+                    "2.5D插画设计/汉堡屋-01.jpg",
+                    "2.5D插画设计/AI画板.jpg"
+                ]
+            },
+            {
+                id: 5,
+                title: "人机交互设计",
+                category: "app",
+                description: "通过优化人与系统的交互方式，实现高效、安全、舒适且符合用户预期的互动体验。",
+                client: "金融科技初创公司",
+                timeline: "2021年12月 - 2022年3月",
+                services: "UI设计, UX设计, 用户研究",
+                mainMedia: "交互设计/六宫格适老.jpg",
+                media: [
+                    "交互设计/六宫格适老.jpg",
+                    "交互设计/车机UI.jpg",
+                    "交互设计/流浪地球.jpg",
+                    "交互设计/烧火龙.jpg"
+                ]
+            },
+            {
+                id: 6,
+                title: "科技公司品牌重塑",
+                category: "brand",
+                description: "构建符合动画故事基调与世界观的视觉空间，既为角色活动提供合理环境支撑，也通过氛围营造传递情感、推动剧情，增强观众的代入感。",
+                client: "未来科技有限公司",
+                timeline: "2021年8月 - 2021年11月",
+                services: "品牌策略, 视觉识别, 品牌设计",
+                mainMedia: "游戏与场景/6.png",
+                media: [
+                    "游戏与场景/2.png",
+                    "游戏与场景/3.png",
+                    "游戏与场景/4.png",
+                    "游戏与场景/5.png"
+                ]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化技能饼图
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['用户界面设计', '用户体验设计', '动效与视觉设计'],
+                    datasets: [{
+                        data: [35, 30, 35],
+                        backgroundColor: ['#3B82F6', '#10B981', '#8B5CF6'],
+                        borderWidth: 0,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    return `${label}`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true,
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+            
+            const projectDetailModal = document.getElementById('project-detail-modal');
+            const projectDetailContent = document.getElementById('project-detail-content');
+            const closeDetailModal = document.getElementById('close-detail-modal');
+            const moreProjectsModal = document.getElementById('more-projects-modal');
+            const moreProjectsContent = document.getElementById('more-projects-content');
+            const closeMoreModal = document.getElementById('close-more-modal');
+            const viewMoreBtn = document.getElementById('view-more-projects');
+            const viewProjectDetailsLinks = document.querySelectorAll('.view-project-details');
+
+            function openProjectDetail(id) {
+                const project = projectsData.find(p => p.id === id);
+                if (!project) return;
+
+                let mainMediaElement = `<img src="${project.mainMedia}" alt="${project.title}" class="w-full">`;
+
+                let thumbnailsHTML = '';
+                project.media.forEach(media => {
+                    thumbnailsHTML += `<img src="${media}" alt="缩略图" class="thumbnail-media" data-src="${media}">`;
+                });
+
+                projectDetailContent.innerHTML = `
+                    <div class="detail-header">
+                        <h2 class="text-3xl font-bold mb-2">${project.title}</h2>
+                        <div class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">
+                            ${project.category === 'website' ? '网页设计' : 
+                              project.category === 'app' ? '应用设计' : '品牌设计'
+                              }
+                        </div>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-gallery">
+                            <div class="main-image">
+                                ${mainMediaElement}
+                            </div>
+                            <div class="thumbnails">
+                                ${thumbnailsHTML}
+                            </div>
+                        </div>
+                        <div class="detail-info">
+                            <div class="detail-description">
+                                <h3>项目描述</h3>
+                                <p class="text-gray-600 mb-6">${project.description}</p>
+                            </div>
+                    </div>
+                </div>
+                `;
+
+                projectDetailModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                const thumbnailMedias = projectDetailContent.querySelectorAll('.thumbnail-media');
+                const mainMedia = projectDetailContent.querySelector('.main-image');
+                
+                thumbnailMedias.forEach(media => {
+                    media.addEventListener('click', () => {
+                        const src = media.getAttribute('data-src');
+                        mainMedia.innerHTML = `<img src="${src}" alt="${project.title}" class="w-full">`;
+                    });
+                });
+            }
+
+            function openMoreProjects() {
+                // 保持原有逻辑
+            }
+
+            function closeProjectDetail() {
+                projectDetailModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function closeMoreProjects() {
+                moreProjectsModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // 保持原有的事件监听器
+            viewProjectDetailsLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const id = parseInt(link.getAttribute('data-id'));
+                    openProjectDetail(id);
+                });
+            });
+
+            viewMoreBtn.addEventListener('click', openMoreProjects);
+            closeDetailModal.addEventListener('click', closeProjectDetail);
+            closeMoreModal.addEventListener('click', closeMoreProjects);
+
+            projectDetailModal.addEventListener('click', (e) => {
+                if (e.target === projectDetailModal) {
+                    closeProjectDetail();
+                }
+            });
+
+            moreProjectsModal.addEventListener('click', (e) => {
+                if (e.target === moreProjectsModal) {
+                    closeMoreProjects();
+                }
+            });
+
+            // 作品筛选功能
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-white', 'text-gray-700');
+                    });
+                    button.classList.remove('bg-white', 'text-gray-700');
+                    button.classList.add('bg-primary', 'text-white');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // 移动端菜单切换
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 导航栏滚动效果
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2', 'shadow');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2', 'shadow');
+                }
+            });
+            
+            // 技能条动画
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBar = entry.target;
+                        const width = skillBar.getAttribute('data-width');
+                        skillBar.style.width = width;
+                        observer.unobserve(skillBar);
+                    }
+                });
+            }, observerOptions);
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+            
+            // 返回顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
