@@ -790,49 +790,19 @@
             margin-bottom: 1rem;
             color: #1F2937;
         }
-        
-        .detail-meta {
-            background-color: #f9fafb;
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-        
-        .detail-meta h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #1F2937;
-        }
-        
-        .meta-item {
-            margin-bottom: 1rem;
-        }
-        
-        .meta-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .meta-item strong {
-            display: block;
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-bottom: 0.25rem;
-        }
     </style>
 
     <!-- 延迟加载非关键JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
     
     <script>
-        // 作品数据 - 使用原始图片路径
+        // 作品数据 - 简化版，只保留图片和描述
         const projectsData = [
             {
                 id: 1,
                 title: "海报设计与排版",
                 category: "website",
                 description: "通过视觉化呈现快速传递活动、产品、理念的信息，并吸引目标受众关注，促使用户参与、购买、认知。",
-                client: "知名品牌",
-                timeline: "2024年3月 - 2024年6月",
-                services: "海报设计与排版",
                 mainMedia: "zuopinji/海报设计/龙的传人海报.webp",
                 media: [
                     "zuopinji/海报设计/龙的传人海报.webp",
@@ -846,9 +816,6 @@
                 title: "网页设计",
                 category: "app",
                 description: "通过数字化平台记录其文化内涵与技艺流程、向大众普及这项非遗的价值、助力活态传承，并推动文旅融合，最终搭建传统与现代的桥梁，让烧火龙在当代持续焕发生命力。",
-                client: "健康科技公司",
-                timeline: "2022年11月 - 2023年2月",
-                services: "UI设计, UX设计, 原型设计",
                 mainMedia: "zuopinji/交互设计/1.webp",
                 media: [
                     "zuopinji/交互设计/2.webp",
@@ -862,9 +829,6 @@
                 title: "游戏设计与开发",
                 category: "brand",
                 description: "全程UE5开发，营造沉浸式惊悚氛围、设计紧张刺激的情节与互动，让玩家体验可控的恐惧与肾上腺素飙升的快感，同时传递特定叙事或情感共鸣。",
-                client: "",
-                timeline: "",
-                services: "",
                 mainMedia: "zuopinji/游戏与场景/锈蚀游戏封面海报.webp",
                 media: [
                     "zuopinji/游戏与场景/开始.webp",
@@ -878,9 +842,6 @@
                 title: "2.5D插画设计",
                 category: "website",
                 description: "广泛应用在网页设计、移动应用界面、游戏界面等领域，借助 2.5D 设计可呈现更生动直观的效果，能有效引导用户视线流动，增强用户体验",
-                client: "",
-                timeline: "",
-                services: "UI设计, UX设计",
                 mainMedia: "zuopinji/2.5D插画设计/AI冬至.webp",
                 media: [
                     "zuopinji/2.5D插画设计/AI冬至.webp",
@@ -894,9 +855,6 @@
                 title: "人机交互设计",
                 category: "app",
                 description: "通过优化人与系统的交互方式，实现高效、安全、舒适且符合用户预期的互动体验。",
-                client: "金融科技初创公司",
-                timeline: "2021年12月 - 2022年3月",
-                services: "UI设计, UX设计, 用户研究",
                 mainMedia: "zuopinji/交互设计/六宫格适老.webp",
                 media: [
                     "zuopinji/交互设计/六宫格适老.webp",
@@ -910,9 +868,6 @@
                 title: "动画场景设计",
                 category: "brand",
                 description: "构建符合动画故事基调与世界观的视觉空间，既为角色活动提供合理环境支撑，也通过氛围营造传递情感、推动剧情，增强观众的代入感。",
-                client: "未来科技有限公司",
-                timeline: "2021年8月 - 2021年11月",
-                services: "品牌策略, 视觉识别, 品牌设计",
                 mainMedia: "zuopinji/游戏与场景/6.webp",
                 media: [
                     "zuopinji/游戏与场景/2.webp",
@@ -1047,22 +1002,7 @@
                         <div class="detail-info">
                             <div class="detail-description">
                                 <h3>项目描述</h3>
-                                <p class="text-gray-600 mb-6">${project.description}</p>
-                            </div>
-                            <div class="detail-meta">
-                                <h4>项目信息</h4>
-                                ${project.client ? `<div class="meta-item">
-                                    <strong>客户</strong>
-                                    <p>${project.client}</p>
-                                </div>` : ''}
-                                ${project.timeline ? `<div class="meta-item">
-                                    <strong>时间</strong>
-                                    <p>${project.timeline}</p>
-                                </div>` : ''}
-                                ${project.services ? `<div class="meta-item">
-                                    <strong>服务内容</strong>
-                                    <p>${project.services}</p>
-                                </div>` : ''}
+                                <p class="text-gray-600">${project.description}</p>
                             </div>
                         </div>
                     </div>
